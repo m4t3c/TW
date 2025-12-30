@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova JavaScript</title>
+  </head>
+  <body>
+    <h1>Ciao, mondo!</h1>
+    <p>Questo è un paragrafo di prova.</p>
+    <!-- Qui inseriamo il nostro script -->
+    <script>
+    const titolo = document.querySelector('h1');
+    // setTimeout prende due argomenti: la funzione da eseguire e il ritardo in millisecondi
+    setTimeout(() => {
+    titolo.style.color = 'red';
+    }, 10000); // 10 secondi
+    </script>
+  </body>
+</html>

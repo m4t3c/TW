@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista e Tema Dinamico</title>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+        }
+
+        body.dark {
+            background-color: #222;
+            color: #eee
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista dinamica &amp; cambio tema </h1>
+    <input type="text" id="nuovoElementoInput" placeholder="Scrivi qualcosa...">
+    <button id="aggiungiBtn">Aggiungi</button>
+    <ul id="lista"></ul>
+
+    <button id="coloreSfondoBtn">Cambia lo sfondo</button>
+    <button id="temaBtn">Cambia Tema</button>
+    
+    <script>
+        const lista = document.getElementById("lista");
+        const input = document.getElementById("nuovoElementoInput");
+        const bottone = document.getElementById("aggiungiBtn");
+        const coloreSfondoBtn = document.getElementById("coloreSfondoBtn");
+        const temaBtn = document.getElementById("temaBtn");
+
+        bottone.addEventListener("click", function() {
+            const testo = input.value.trim();
+            console.log(testo);
+            if (testo !== "") {
+                const li = document.createElement("li");
+                li.textContent = testo;
+                lista.appendChild(li);
+                input.value = "";
+                input.focus();
+            }
+        });
+
+        coloreSfondoBtn.addEventListener("click", function() {
+            const colori = ["lightblue", "lightgreen", "lightpink", "lightyellow"];
+            const indiceCasuale = Math.floor(Math.random() * colori.length);
+
+            document.body.style.backgroundColor = colori[indiceCasuale];
+        })
+
+        temaBtn.addEventListener("click", function() {
+            document.body.classList.toggle("dark");
+        })
+    </script>
+</body>
+</html>
