@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <h1>Inserisci i tuoi dati</h1>
+    <form action="https://httpbin.org/post" method="post">
+        <label for="username">Nome: </label>
+        <input type="text" name="username" id="username"><br>
+        <label>Corso di laurea: </label> <br>
+        <label for="corso">Triennale</label>
+        <input type="radio" name="corso" id="corso"> <br>
+        <label for="corso">Magistrale</label>
+        <input type="radio" name="corso" id="corso"><br>
+        <label for="provincia">Provincia: </label>
+        <select name="provincia" id="provincia">
+            <option value="">-- Scegli la provincia --</option>
+            <option value="MO">Modena</option>
+            <option value="BO">Bologna</option>
+            <option value="RE">Reggio Emilia</option>
+            <option value="PR">Parma</option>
+            <option value="ot">Altro</option>
+        </select> <br>
+        <input type="submit" name="Invia">
+    </form>
+</body>
+</html>
