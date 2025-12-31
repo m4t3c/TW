@@ -1,0 +1,66 @@
+/* Per tutto il body si definisce che il contenuto deve essere organizzato in una flexbox verticale */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;;
+}
+
+.header {
+    background-color: #005580;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/*  Per il contenuto principale creiamo un'altra flex box in orizzontale questa volta (default). 
+    Indicando flex:1 diciamo di occupare tutto lo spazio che ha a disposizione  */
+.mainContent {
+    display: flex;
+    flex: 1;
+}
+
+/*  Con flex basis diciamo quanto deve occupare della flex box questa classe, 
+    gli altri parametri fanno sì che sia imposto il fatto che non cresca oltre il 25% la flex box. */
+.sidebar {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 25%;
+    padding: 15px;
+    background-color: #e0e0e0;
+}
+
+.content {
+    flex: 1;
+    padding: 15px
+}
+
+.footer {
+    background-color: #005580;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: #333;
+    text-decoration: none;
+}
+
+.content p {
+    margin-bottom: 1em;
+    line-height: 1.6;
+}

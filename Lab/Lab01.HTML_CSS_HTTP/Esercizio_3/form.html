@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <title>Form di Registrazione</title>
+</head>
+<body>
+  <div>
+    <h2>Registrazione Utente</h2>
+    <form action="https://httpbin.org/post" method="post">
+
+      <!-- Username -->
+      <label for="username">Nome Utente:</label>
+      <input type="text" name="username" id="username"><br>
+      <!-- Password -->
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password"><br>
+      <!-- Email -->
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email"><br>
+      <!-- Gender (Radio Button) -->
+      <label>Genere:</label>
+      <label for="male">M</label>
+      <input type="radio" name="gender" id="male" value="male">
+      <label for="female">F</label>
+      <input type="radio" name="gender" id="female" value="female"> <br>
+      <!-- Interests (Checkbox) -->
+      <label>Interessi:</label><br>
+      <label for="music">Musica</label>
+      <input type="checkbox" name="music" id="music"><br>
+      <label for="travels">Viaggi</label>
+      <input type="checkbox" name="travels" id="travels"><br>
+      <label for="movie">Film</label>
+      <input type="checkbox" name="movie" id="movie"><br>
+      <label for="sport">Sport</label>
+      <input type="checkbox" name="sport" id="sport"><br>
+      <!-- Country (Select Dropdown) -->
+      <label for="country">Paese:</label>
+      <select name="country" id="country">
+        <option value="">-- Seleziona un paese --</option>
+        <option value="it">Italia</option>
+        <option value="fr">Francia</option>
+        <option value="es">Spagna</option>
+        <option value="en">Inghilterra</option>
+      </select><br>
+
+      <!-- Submit Button -->
+      <button type="submit">Registrati</button>
+
+    </form>
+  </div>
+</body>
+</html>
