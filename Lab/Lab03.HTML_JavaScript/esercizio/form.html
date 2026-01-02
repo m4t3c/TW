@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form di Registrazione</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <form action="https://httpbin.org/post" method="post">
+    <h1>Registrazione Utente</h1>
+
+    <div class="form-group">
+      <label>Nome Utente</label>
+      <!-- Input per il Nome Utente-->
+       <input type="text" name="username" id="username">
+      <div class="error"></div>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <!-- Input per il Email-->
+       <input type="email" name="email" id="email">
+      <div class="error"></div>
+    </div>
+
+    <div class="form-group">
+      <label>Età</label>
+      <!-- Input per il età -->
+       <input type="number" min="18" max="99" name="age" id="age">
+      <div class="error"></div>
+    </div>
+
+    <div class="form-group">
+      <label>Telefono</label>
+      <!-- Input per il telefono-->
+       <input type="text" name="phone" id="phone">
+      <div class="error"></div>
+    </div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <!-- Input per il password -->
+       <input type="password" name="password1" id="password1">
+      <div class="error"></div>
+       <label>Conferma Password</label>
+       <input type="password" name="password2" id="password2">
+      <div class="error"></div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit">Invia</button>
+    </div>
+  </form>
+
+</body>
+</html>

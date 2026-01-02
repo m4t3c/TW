@@ -1,0 +1,105 @@
+:root {
+    --color-primary: #0066ff;
+    --color-primary-hover: #0052cc;
+    --color-bg: #f9f9f9;
+    --color-input-bg: #ffffff;
+    --color-border: #cccccc;
+    --color-error: #e63946;
+    --radius: 8px;
+    --spacing: 1rem;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    font-family: var(--font-family);
+    background-color: var(--color-bg);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  form {
+    background-color: #ffffff;
+    max-width: 450px;
+    width: 100%;
+    padding: calc(var(--spacing) * 2);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+  
+  form h1 {
+    text-align: center;
+    margin-bottom: var(--spacing);
+  }
+  
+  .form-group {
+    margin-bottom: var(--spacing);
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="number"],
+  .form-group input[type="password"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background-color: var(--color-input-bg);
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
+  }
+  
+  .form-group input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 8px rgba(0,102,255,0.2);
+  }
+  
+  .form-group .error {
+    color: var(--color-error);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
+  input:invalid {
+    /* se vuoi evidenziare anche con HTML5 */
+    border-color: var(--color-error);
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-2px);
+  }
+  
+  button[type="submit"]:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  @media (max-width: 480px) {
+    form {
+      padding: var(--spacing);
+    }
+  }
