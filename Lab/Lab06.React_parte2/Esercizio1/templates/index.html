@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask React SPA</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <script type="importmap">
+        {
+            "imports": {
+                "react": "https://esm.sh/react@19?dev",
+                "react-dom/client": "https://esm.sh/react-dom@19/client?dev",
+                "react-router-dom": "https://esm.sh/react-router-dom@7?dev",
+                "react-router": "https://esm.sh/react-router@7?dev"
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel" data-type="module">
+        import React from "react";
+        import { createRoot } from "react-dom/client";
+
+        import {
+            BrowserRouter,
+            Routes,
+            Route,
+            Link,
+        } from "react-router-dom";
+
+        function Home() {
+            return (
+              <div>
+                <h1>Welcome to the Homepage</h1>
+                <p>This is the main page of the website.</p>
+              </div>
+            )
+        }
+
+        function About() {
+            return (
+              <div>
+                <h1>About us</h1>
+                <p>This is about page</p>
+              </div>
+            )
+        }
+
+        function Contacts() {
+            return (
+              <div>
+                <h1>Contact Us</h1>
+                <div>
+                  <p>Email: contact@example.com</p>
+                  <p>Phone: 3254234654</p>
+                </div>
+              </div>
+            )
+        }
+
+        function App() {
+            return (
+                <BrowserRouter>
+                    <div>
+                        <nav>
+                            <ul className="nav-horizontal">
+                                <li><Link to="/">Home</Link></li>
+                                <li><Link to="/about">About</Link></li>
+                                <li><Link to="/contact">Contacts</Link></li>
+                            </ul>
+                        </nav>
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/contact" element={<Contacts />} />
+                        </Routes>
+                    </div>
+                </BrowserRouter>
+            )
+        }
+
+        const root = createRoot(document.getElementById("root"));
+        root.render(<App />);
+    </script>
+</body>
+</html>

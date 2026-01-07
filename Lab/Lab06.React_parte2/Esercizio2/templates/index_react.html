@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flask React SPA</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #eee;
+    }
+    form label {
+      display: block;
+      margin: 8px 0;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+      box-sizing: border-box;
+    }
+    form button {
+      margin-top: 10px;
+      padding: 8px 12px;
+    }
+
+    .errorDiv{
+      color: red
+    }
+  </style><!-- Import map per risolvere i moduli -->
+  <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@19?dev",
+        "react-dom/client": "https://esm.sh/react-dom@19/client?dev",
+        "react-router-dom": "https://esm.sh/react-router-dom@7?dev",
+        "react-router": "https://esm.sh/react-router@7?dev"
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" data-type="module">
+    import React from "react";
+    import { createRoot } from "react-dom/client";
+    
+    import {
+            BrowserRouter,
+            Routes,
+            Route,
+            Link,
+            useParams
+        } from "react-router-dom";
+
+
+    function ProductDetail(){
+       const params = useParams();
+       const productCode = params.productCode;
+      const [product, setProduct] = React.useState([]);
+      React.useEffect(()=>{
+        fetch(`/api/products/${productCode}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Failed to fetch product code");
+          }
+          return response.json();
+        })
+        .then(result => {
+          console.log(result);
+          setProduct(result);
+        })
+        .catch(e => {
+          console.error(e);
+        })
+      }, []);
+       return (
+               <div>
+                 <h1>Product Detail</h1>
+                 <p><strong>ID: </strong>{product.product_code}</p>
+                 <p><strong>Title: </strong>{product.title}</p>
+                 <p><strong>Price: </strong>{product.price}</p>
+                 <p><strong>Description: </strong>{product.description}</p>
+                 <Link to="/products">Back to the list</Link>
+               </div>
+       );
+    }
+    
+
+    function ProductsTable() {
+      const [products, setProducts] = React.useState([]);
+
+      
+      React.useEffect(() => {
+        fetch("/api/products")
+        .then((res) => {
+            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+            return res.json();
+        })
+        .then((data) => setProducts(data))
+        .catch((err) => console.error("Error loading products:", err));
+      }, []);
+
+
+      return (
+          <div className="p-6 space-y-6">
+              <h1 className="text-2xl font-bold">Products</h1>
+
+
+              <table className="w-full border-collapse border border-gray-400">
+                <thead>
+                  <tr className="bg-gray-200">
+                    <th className="border border-gray-400 p-2">ID</th>
+                    <th className="border border-gray-400 p-2">Title</th>
+                    <th className="border border-gray-400 p-2">Price</th>
+                  </tr>
+                </thead>
+                  <tbody>
+                  {products.map((p) => (
+                    <tr key={p.product_code}>
+                        <td className="border p-2"><Link to={p.product_code}>{ p.product_code }</Link></td>
+                        <td className="border p-2"><Link to={p.product_code}>{p.title}</Link></td>
+                      <td className="border p-2"><Link to={p.product_code}>{p.price}</Link></td>
+                    </tr>
+                    ))}
+                  </tbody>
+              </table>
+          </div>
+      );
+    }
+
+    function App() {
+            return (
+            <BrowserRouter>
+              <Routes>
+                <Route path="/products" element={<ProductsTable />} />
+                <Route path="/products/:productCode" element={<ProductDetail/>}/>
+              </Routes>
+            </BrowserRouter>
+            );
+    }
+
+    const root = createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>
