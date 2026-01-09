@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flask React SPA</title>
+
+  <!-- Import map per risolvere i moduli -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@19?dev",
+        "react-dom/client": "https://esm.sh/react-dom@19/client?dev",
+        "react-router-dom": "https://esm.sh/react-router-dom@7?dev",
+        "react-router": "https://esm.sh/react-router@7?dev"
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" data-type="module">
+    import React from "react";
+    import { createRoot } from "react-dom/client";
+    import {
+      BrowserRouter,
+      Routes,
+      Route,
+      Link,
+      useParams,
+      Navigate
+    } from "react-router-dom";
+
+    function ProductList() {
+        const [products, setProducts] = React.useState([]);
+        const [formData, setFormData] = React.useState(""); //Stringa vuota inizialmente
+
+        React.useEffect(() => {
+            fetch('/api/products')
+                .then(response => {
+                    console.log(response)
+                    if (!response.ok) {
+                        throw new Error();
+                    }
+                    return response.json();
+                })
+                .then(result => {
+                    console.log(result);
+                    setProducts(result);
+                })
+                .catch(e => {
+                    console.error("Si è verificato un errore nel recupero prodotti. " + e)
+                })
+        },[]);
+
+        const changedText = (e) => {
+          //console.log(e.target.value);
+            setFormData(e.target.value);
+        };
+
+        const submitSearch = (e) => {
+            e.preventDefault()
+            const form = e.target;
+            const search_text = form['search'].value.toLowerCase();
+            fetch('/api/products')
+                .then(response => {
+                    console.log(response)
+                    if (!response.ok) {
+                        throw new Error();
+                    }
+                    return response.json();
+                })
+                .then(result => {
+                    if (search_text === "") {
+                        setProducts(result)
+                    }
+                    else {
+                        let products_filtered = [];
+                        result.forEach((product) => {
+                            if (product['nome_prodotto'].toLowerCase().includes(search_text)){
+                                products_filtered = [...products_filtered, product];
+                            }
+                        });
+                        setProducts(products_filtered);
+                    }
+                })
+                .catch(e => {
+                    console.error("Si è verificato un errore nel recupero prodotti. " + e)
+                })
+        }
+
+        return (
+            <div>
+                <form onSubmit={submitSearch}>
+                    <input type="text" name="search" id="search" onChange={changedText}/>
+                    <input type="submit" value="Cerca"/>
+                </form>
+
+            <table>
+      <thead>
+        <tr>
+          <th>Nome prodotto</th>
+          <th>Prezzo</th>
+          <th>Disponibilità</th>
+        </tr>
+      </thead>
+      <tbody>
+      {products.map((product, key) => {return (
+          <tr key={key}>
+            <td>{ product.nome_prodotto }</td>
+            <td>{ product.prezzo }</td>
+            <td>
+                { parseInt(product.disponibilita) === 0 ? <span>Esaurito</span> : <span>Disponibile</span> }
+            </td>
+          </tr>); //Una sola graffa per fare codice javascript in tag html con babel
+          })}
+      </tbody>
+</table>
+</div>
+        );}
+
+    function App(props) {
+      return (
+        <BrowserRouter>
+            <div>
+                <Routes>
+                    <Route path="/react" element={<ProductList />}/>
+                </Routes>
+            </div>
+        </BrowserRouter>
+      )
+
+    }
+
+    const rootEl = document.getElementById("root");
+    const root = createRoot(rootEl);
+    root.render(React.createElement(App));
+  </script>
+
+</body>
+</html>

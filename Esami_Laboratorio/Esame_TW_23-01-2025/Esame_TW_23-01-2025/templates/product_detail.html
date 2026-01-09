@@ -1,10 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Dettaglio Prodotto{% endblock %}
+{% block content %}
+<script>
+    async function buyProduct() {
+        const response = await fetch('/api/buy/{{product.codice_prodotto}}',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const result = await response.json();
+        const msg = document.getElementById('msg');
+        const disp = document.getElementById('disp');
+
+        if (response.ok) {
+            msg.textContent = result.message;
+            msg.style.color = 'green'
+
+            disp.textContent = result.disponibilita;
+            if (result.disponibilita == 0) {
+                document.querySelector('button').disabled = true;
+                document.querySelector('button').textContent = 'Esaurito';
+            }
+        } else {
+            msg.textContent = result.error
+            msg.style.color = 'red'
+        }
+    }
+</script>
+
+    <h2>Dettaglio prodotto</h2>
+    <div class="product_detail">
+    <ul>
+        <li><strong>Nome: </strong>{{ product.nome_prodotto }}</li>
+        <li><strong>Codice Prodotto: </strong>{{ product.codice_prodotto }}</li>
+        <li><strong>Categoria: </strong>{{ product.categoria }}</li>
+        <li><strong>Prezzo: </strong>{{ product.prezzo }}</li>
+        <li><strong>Disponibilità: </strong><span id="disp">{{ product.disponibilita }}</span></li>
+        <li><strong>Descrizione: </strong>{{ product.descrizione }}</li>
+    </ul>
+    </div>
+    <button onclick="buyProduct()">Acquista</button>
+    <p id="msg"></p>
+    <div class="actions">
+        <a class="button-link" href="/index">Torna alla lista dei prodotti</a>
+    </div>
+{% endblock %}

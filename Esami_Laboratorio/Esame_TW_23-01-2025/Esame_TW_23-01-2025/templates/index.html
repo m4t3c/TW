@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Prodotti{% endblock %}
+
+{% block content %}
+  {% if products|length == 0 %}
+    <p>Nessun prodotto disponibile</p>
+  {% else %}
+    <table>
+      <thead>
+        <tr>
+          <th>Nome prodotto</th>
+          <th>Prezzo</th>
+          <th>Disponibilità</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+          <tr>
+            <td><a href="/product/{{ product.codice_prodotto }}">{{ product.nome_prodotto }}</a></td>
+            <td>{{ product.prezzo }}</td>
+            <td>
+                {% if product.disponibilita > "0" %}
+                    Disponibilie
+                {% else %}
+                    Esaurito
+                {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+{% endblock %}
