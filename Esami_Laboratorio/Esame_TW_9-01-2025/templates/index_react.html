@@ -17,11 +17,12 @@
       }
     }
   </script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
   <div id="root"></div>
 
-  <script type="module">
+  <script type="text/babel" data-type="module">
     import React from "react";
     import { createRoot } from "react-dom/client";
     import {
@@ -33,16 +34,128 @@
       Navigate
     } from "react-router-dom";
 
-    
+    //ESERCIZIO 8
+    function EventDetail() {
+        const params = useParams();
+        const eventCode = params.id;
+        const [event, setEvent] = React.useState([]);
+        React.useEffect(() => {
+            fetch(`/api/events/${eventCode}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error();
+                    }
+                    return response.json();
+                })
+                .then(result => {
+                    console.log(result);
+                    setEvent(result);
+                })
+                .catch(e => {
+                    console.error(e);
+                })
+        }, []);
+
+        return(
+            <div>
+                <h1>{ event.name }</h1>
+                <ul>
+                    <li><strong>Sport: </strong>{ event.sport }</li>
+                    <li><strong>Data: </strong>{ event.date }</li>
+                    <li><strong>Luogo: </strong>{ event.location }</li>
+                    <li><strong>Posti disponibili: </strong>{ event.available_places }</li>
+                </ul>
+            </div>
+        );
+    }
+
+    //ESERCIZIO 7
+    function EventList() {
+        const [events, setEvents] = React.useState([]);
+
+        React.useEffect(() => {
+            fetch('api/events')
+                .then(response => {
+                    console.log(response)
+                    if (!response.ok) {
+                        throw new Error();
+                    }
+                    return response.json()
+                })
+                .then(result => {
+                    console.log(result);
+                    setEvents(result);
+                })
+                .catch(e => {
+                    console.error("Si è verificato un errore nel recupero degli eventi. " + e)
+                })
+        }, []);
+
+    async function BookPlace(eventCode) {
+        const confirm = window.confirm("Confermi di voler prenotare un posto?")
+        if (confirm){
+            fetch(`api/book/${eventCode}`, {method: 'POST'})
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error();
+                    }
+                    return response.json();
+                })
+                .then(result => {
+                    alert(result.message);
+                    setEvents(events.map(event => {
+                        return (event.code === eventCode ? Object.assign({}, event, {available_places: parseInt(event.available_places) - 1})
+                        :event)
+                    }));
+                })
+                .catch(error => {
+                    return alert("Errore nella prenotazione: " + error);
+                })
+        }
+    }
+
+        return(
+            <div>
+                {events.length > 0 ? (
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Nome</th>
+                      <th>Sport</th>
+                      <th>Data</th>
+                      <th>Luogo</th>
+                      <th>Posti Disponibili</th>
+                      <th>Prenota un posto</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {events.map((event, key) => {return(
+                    <tr key={key}>
+                        <td><Link to={`/react/event/${event.code}`}>{ event.name }</Link></td>
+                      <td>{ event.sport }</td>
+                      <td>{ event.date }</td>
+                      <td>{ event.place }</td>
+                      <td>{ event.available_places }</td>
+                      <td><button onClick={() => BookPlace(event.code)}>Acquista Biglietto</button></td>
+                    </tr> );
+                      })}
+                  </tbody>
+                </table>)
+            : (
+                <h2>Nessun evento disponibile</h2>
+            )}
+            </div>
+        );}
 
     function App(props) {
-      return React.createElement(BrowserRouter, null,
-        React.createElement('div', null,
-          React.createElement(Routes, null,
-            
-          )
-        )
-      );
+      return (
+          <BrowserRouter>
+              <Routes>
+                  <Route path="/react" element={<EventList/>}/>
+                  <Route path="/react/event/:id" element={<EventDetail/>}/>
+              </Routes>
+          </BrowserRouter>
+      )
     }
 
     const rootEl = document.getElementById("root");

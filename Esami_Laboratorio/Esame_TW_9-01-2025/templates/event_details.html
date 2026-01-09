@@ -1,16 +1,46 @@
 {% extends 'base.html' %}
 {% block title %}{{ event.name }}{% endblock %}
 {% block content %}
-<div class="event-card">
-    <h1>{{ event.name }}</h1>
-    <ul>
-        <li><strong>Sport: </strong>{{ event.sport }}</li>
-        <li><strong>Data: </strong>{{ event.date }}</li>
-        <li><strong>Luogo: </strong>{{ event.location }}</li>
-        <li><strong>Posti disponibili: </strong>{{ event.available_places }}</li>
-    </ul>
-    <form action=" /api/book/{{ event.code }}" method="post">
-        <button type="submit">Prenota un posto</button>
-    </form>
-</div>
+    <script>
+    async function buyTicket() {
+        const response = await fetch('/api/book/{{ event.code }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const result = await response.json();
+        const msg = document.getElementById('msg');
+        const disp = document.getElementById('disp');
+
+        if (response.ok) {
+            msg.textContent = result.message;
+            msg.style.color = 'green'
+
+            disp.textContent = result.posti_disponibili
+            if (parseInt(result.posti_disponibili) === 0 ) {
+                document.querySelector('button').disabled = true;
+                document.querySelector('button').textContent = 'Posti esauriti';
+            }
+        } else {
+            msg.textContent = result.error
+            msg.style.color = 'red'
+            document.querySelector('button').disabled = true;
+        }
+
+
+    }
+    </script>
+    <div class="event-card">
+        <h1>{{ event.name }}</h1>
+        <ul>
+            <li><strong>Sport: </strong>{{ event.sport }}</li>
+            <li><strong>Data: </strong>{{ event.date }}</li>
+            <li><strong>Luogo: </strong>{{ event.location }}</li>
+            <li><strong>Posti disponibili: </strong><span id="disp">{{ event.available_places }}</span></li>
+        </ul>
+        <p id="msg"></p>
+        <button onclick="buyTicket()">Prenota un posto</button>
+    </div>
 {% endblock %}

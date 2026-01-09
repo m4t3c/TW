@@ -47,6 +47,7 @@ def event_details(event_code):
         return render_template('event_details.html', event=event)
     return "Error: Event not found", 404
 
+#ESERCIZIO 4
 @app.route('/api/book/<event_code>', methods=['POST'])
 def book(event_code):
     events = load_events()
@@ -55,10 +56,29 @@ def book(event_code):
             if int(event['available_places']) > 0:
                 event['available_places'] = str(int(event['available_places']) - 1)
                 write_events(events)
-                return message_flashed({'success': True, 'message': 'Posto prenotato con successo'})
-            return jsonify({'success': False, 'message': 'Posti esauriti'}), 400
-    return jsonify({'success': False, 'message': 'Evento non trovato'}), 404
+                return jsonify({'success': True, 'message': 'Posto prenotato con successo', 'posti_disponibili': event['available_places']})
+            return jsonify({'success': False, 'error': 'Posti esauriti', 'posti_disponibili': event['available_places']}), 400
+    return jsonify({'success': False, 'error': 'Evento non trovato'}), 404
 
+#ESERCIZIO 5
+@app.route('/api/events', methods=['GET'])
+def api_events():
+    events = load_events()
+    return jsonify(events)
+
+@app.route('/api/events/<event_code>', methods=['GET'])
+def get_event(event_code):
+    events = load_events()
+    event = next((e for e in events if e['code'] == event_code), None)
+    if event:
+        return jsonify(event)
+    else:
+        return jsonify({'error': 'Evento non trovato'}), 404
+
+#ESERCIZIO 6
+@app.route('/react')
+def react():
+    return render_template('index_react.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
