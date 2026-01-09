@@ -1,0 +1,33 @@
+<!-- ESERCIZIO 2 -->
+{% extends 'base.html' %}
+{% block title %}Eventi sportivi{% endblock %}
+{% block content %}
+<h2>Eventi disponibili:</h2>
+{% if events %}
+    <table>
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Sport</th>
+        <th>Data</th>
+        <th>Luogo</th>
+        <th>Posti Disponibili</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for event in events %}
+        <!-- ESERCIZIO 3 -->
+    <tr onclick="window.location='/event/{{ event.code }}';" style="cursor: pointer;">
+        <td>{{ event.name }}</td>
+        <td>{{ event.sport }}</td>
+        <td>{{ event.data }}</td>
+        <td>{{ event.place }}</td>
+        <td>{{ event.available_places }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% else %}
+    <p>Nessun evento disponibile.</p>
+{% endif %}
+{% endblock %}
