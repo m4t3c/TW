@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Video Games{% endblock %}
+{% block content %}
+	<h1>Giochi disponibili</h1>
+    <table>
+    <thead>
+    <tr>
+        <td>Nome</td>
+        <td>Valutazioni</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for videogame in videogames %}
+        <tr>
+            <td><a href="/videogame/{{ videogame.code }}">{{ videogame.name }}</a></td>
+            {% if gameratings[videogame.code] %}
+            	<td>{{ gameratings[videogame.code] }}</td>
+            {% else %}
+                <td>Nessuna valutazione</td>
+            {% endif %} 
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}

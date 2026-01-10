@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}{{ videogame.name }}{% endblock %}
+{% block content %}
+	<h1>{{ videogame.name }}</h1>
+    <h2>{{ videogame.company }}</h2>
+    <h3>Recensioni:</h3>
+    {% if ratings %}
+    	<ul>
+        {% for r in ratings %}
+            <li><strong>{{ r.username }}: </strong>{{ r.rating }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>Nessuna valutazione</p>
+    {% endif %}
+    <h4>Recensisci il gioco</h4>
+    <form action="/api/add_rating" method="post">
+        <input type="text" hidden="true" name="videogame_code" value={{ videogame.code }}>
+        <label for="username">Username: </label>
+        <input type="text" name="username" id="username"><br>
+        <label for="rating">Voto: </label>
+        <input type="number" name="rating" id="rating" min="1" max="10"><br>
+        <button type="submit">Aggiungi</button>
+    </form>
+    <a href="/index">Torna alla lista</a>
+{% endblock %}
