@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}{{ video.video_name }}{% endblock %}
+{% block content %}
+	<div>
+        <embed src={{ video.video_link }} type="video/webm" width="400" height="300">
+        <h2>{{ video.video_name }}</h2>
+        <h3>Commenti</h3>
+        <ul>
+            {% for comment in comments %}
+            <li>{{ comment }}</li>
+            {% endfor %}
+        </ul>
+
+    <!-- ESERCIZIO 4 -->
+        <h4>Aggiungi un commento</h4>
+        <form action="/add_comment" method="POST">
+            <input hidden="hidden" name="video_code" value="{{ video.video_code }}">
+            <textarea name="comment" rows="4" cols="50" placeholder="Inserisci il commento" required></textarea><br>
+            <button type="submit">Invia</button>
+        </form>
+
+        <a href="/index">Torna alla lista</a>
+    </div>
+{% endblock %}

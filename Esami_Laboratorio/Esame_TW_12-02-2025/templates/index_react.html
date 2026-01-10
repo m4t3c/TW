@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flask React SPA</title>
+
+  <!-- Import map per risolvere i moduli -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@19?dev",
+        "react-dom/client": "https://esm.sh/react-dom@19/client?dev",
+        "react-router-dom": "https://esm.sh/react-router-dom@7?dev",
+        "react-router": "https://esm.sh/react-router@7?dev"
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" data-type="module">
+    import React from "react";
+    import { createRoot } from "react-dom/client";
+    import {
+      BrowserRouter,
+      Routes,
+      Route,
+      Link,
+      useParams,
+      Navigate
+    } from "react-router-dom";
+
+    function VideoList() {
+      const [videos, setVideos] = React.useState([]);
+
+      function fetchVideos() {
+        fetch('/api/videos')
+          .then(r => r.json())
+          .then(data => setVideos(data))
+          .catch(e => console.error(e));
+      }
+
+      React.useEffect(() => {
+        fetchVideos();
+      }, []);
+
+
+        function uploadVideo(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('videoName');
+            const name = nameInput.value;
+            const linkInput = document.getElementById('videoLink');
+            const link = linkInput.value
+
+            fetch('/api/upload_video', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    video_name: name,
+                    video_link: link
+                })
+            })
+                .then(() => {
+                    nameInput.value = '';
+                    linkInput.value = '';
+                    fetchVideos();
+                })
+                .catch(error => {
+                    console.error("Error adding video:", error);
+                })
+        }
+
+
+        return (
+            <div>
+                <h1>Elenco Video</h1>
+                <h2>Carica Video</h2>
+                <form onSubmit={uploadVideo}>
+                    <input type="text" id="videoName" placeholder="Nome video" required/><br/>
+                    <input type="text" id="videoLink" placeholder="Link del video" required/><br/>
+                    <button type="submit">Carica!</button><br/>
+                </form>
+                <table>
+                    <thead>
+                    <tr>
+                        <td>Codice</td>
+                        <td>Nome</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {videos.map((video, key) => {return(
+                        <tr key={key}>
+                            <td>{video.video_code}</td>
+                            <td>{video.video_name}</td>
+                        </tr>
+                    );
+                    })}
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
+
+    function App(props) {
+      return(
+          <BrowserRouter>
+            <Routes>
+              <Route path="/react/videos" element={<VideoList/>} />
+              <Route path="/react" element={<Navigate to="/react/videos" replace />} />
+              <Route path="*" element={<Navigate to="/react/videos" replace />} />
+            </Routes>
+          </BrowserRouter>
+      )
+    }
+
+    const rootEl = document.getElementById("root");
+    const root = createRoot(rootEl);
+    root.render(React.createElement(App));
+  </script>
+
+</body>
+</html>

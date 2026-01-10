@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Video Disponibili{% endblock %}
+{% block content %}
+	<table>
+    <thead>
+    <tr>
+        <td>Nome video</td>
+        <td>Numero Commenti</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for video in videos %}
+    <tr>
+        	<td><a href="/video/{{ video.video_code }}">{{ video.video_name }}</a></td>
+            <td>{{ video_comment_count[video.video_code] }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}
