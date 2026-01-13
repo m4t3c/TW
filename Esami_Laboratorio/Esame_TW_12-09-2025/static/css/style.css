@@ -1,0 +1,197 @@
+/* ===== Base ===== */
+* { box-sizing: border-box; }
+
+:root{
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --danger: #dc2626;
+  --shadow: 0 8px 24px rgba(0,0,0,0.08);
+  --radius: 14px;
+}
+
+html, body { height: 100%; }
+
+body{
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.4;
+}
+
+/* Contenitore “pagina” (funziona anche nel root React) */
+#root,
+main,
+.content,
+body > div{
+  max-width: 980px;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+/* Titoli */
+h1{ font-size: 28px; margin: 0 0 16px; }
+h2{ font-size: 18px; margin: 18px 0 10px; color: var(--muted); }
+
+/* Link */
+a{
+  color: var(--primary);
+  text-decoration: none;
+}
+a:hover{ text-decoration: underline; }
+
+/* ===== “Card” generale per blocchi ===== */
+div > form,
+div > table,
+div > img,
+div > ul,
+div > a{
+  /* non applica sempre, ma aiuta a dare coerenza */
+}
+
+/* ===== Bottoni ===== */
+button{
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--primary);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform .05s ease, background .15s ease, border-color .15s ease;
+}
+
+button:hover{ background: var(--primary-hover); }
+button:active{ transform: translateY(1px); }
+
+button:disabled{
+  background: #9ca3af;
+  border-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Se usi <Link><button/></Link> in React, evita underline */
+a > button{ text-decoration: none; }
+
+/* ===== Tabelle ===== */
+table{
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+thead tr{
+  background: #f3f4f6;
+}
+
+th, td{
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Nei tuoi template usi <td> anche nell'header: lo stile resta comunque ok */
+thead td{
+  font-weight: 700;
+  color: #374151;
+}
+
+tbody tr:hover{
+  background: #f9fafb;
+}
+
+/* righe cliccabili (index.html) */
+tbody tr[onclick]{
+  cursor: pointer;
+}
+
+/* ===== Form ===== */
+form{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+  max-width: 640px;
+}
+
+label{
+  display: inline-block;
+  margin: 10px 0 6px;
+  font-weight: 600;
+  color: #374151;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="url"],
+textarea,
+select{
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--text);
+  outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color: rgba(37,99,235,.7);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+}
+
+/* checkbox list (React NewItinerary) */
+input[type="checkbox"]{
+  transform: translateY(1px);
+}
+
+/* Spaziatura tra righe form (dato che nei template hai <br>) */
+form br{ display: block; content: ""; margin: 6px 0; }
+
+/* ===== Dettaglio luogo (place_detail.html) ===== */
+img{
+  width: 100%;
+  max-width: 560px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  display: block;
+  margin: 12px 0 16px;
+}
+
+ul{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  box-shadow: var(--shadow);
+  max-width: 560px;
+}
+
+ul li{ margin: 8px 0; }
+
+/* ===== Utility piccole ===== */
+p{ margin: 10px 0; color: var(--text); }
+.small{ color: var(--muted); font-size: 14px; }
+
+/* Responsive */
+@media (max-width: 640px){
+  #root, main, .content, body > div{ margin: 18px auto; }
+  table, form, ul{ border-radius: 12px; }
+  th, td{ padding: 10px 10px; }
+  button{ width: 100%; }
+}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}Aggiungi Luogo{% endblock %}
+{% block content %}
+    <script>
+    async function addPlace() {
+        await fetch('/api/add_place', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: document.getElementById('name').value,
+                category: document.getElementById('category').value,
+                municipality: document.getElementById('municipality').value,
+                image_link: document.getElementById('image_link').value,
+                price: document.getElementById('price').value
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(response.statusText);
+                }
+                return response.json();
+            })
+            .then(result => {
+                alert(result.message);
+                if (result.success) {
+                    window.location.href = '/index';
+                }
+            })
+
+    }
+    </script>
+    <div>
+        <h2>Aggiungi un luogo</h2>
+        <form onsubmit="addPlace()">
+            <label for="name">Nome: </label>
+            <input type="text" name="name" id="name"><br>
+            <label for="category">Categoria: </label>
+            <input type="text" name="category" id="category"><br>
+            <label for="municipality">Comune: </label>
+            <input type="text" name="municipality" id="municipality"><br>
+            <label for="image_link">Link immagine</label>
+            <input type="text" name="image_link" id="image_link"><br>
+            <label for="price">Prezzo</label>
+            <input type="number" name="price" id="price" min="0" step="0.01"><br>
+            <button type="submit">Aggiungi Luogo</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flask React SPA</title>
+
+    <!-- Import map per risolvere i moduli -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="importmap">
+        {
+        "imports": {
+            "react": "https://esm.sh/react@19?dev",
+            "react-dom/client": "https://esm.sh/react-dom@19/client?dev",
+            "react-router-dom": "https://esm.sh/react-router-dom@7?dev",
+            "react-router": "https://esm.sh/react-router@7?dev"
+        }
+        }
+    </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+        import React from "react";
+        import { createRoot } from "react-dom/client";
+        import {
+        BrowserRouter,
+        Routes,
+        Route,
+        Link,
+        useParams,
+        Navigate
+        } from "react-router-dom";
+
+        //ESERCIZIO 7
+        function ItineraryList(){
+            const [ itineraries, setItineraries ] = React.useState([]);
+            const [ places, setPlaces] = React.useState([]);
+
+            React.useEffect(() => {
+                fetch("/api/itineraries")
+                .then(response => response.json())
+                .then(data => setItineraries(data))
+                .catch(error => console.log("Errore nel caricamento degli itinerari: " + error));
+
+                fetch("/api/places")
+                .then(response => response.json())
+                .then(data => setPlaces(data))
+                .catch(error => console.log("Errore nel caricamento degli luoghi: " + error));
+            }, []);
+
+            const calculatePrice = (itinerary)  => {
+                if (!itinerary.place_list || !places.length) {
+                    return 0;
+                }
+                let total = 0;
+                console.log(itinerary.place_list);
+                itinerary.place_list.forEach(placeId => {
+                    const place = places.find(p => String(p.place_id) === String(placeId));
+                    if (place) {
+                        total += parseFloat(place.price) || 0;
+                    }
+                })
+                return total.toFixed(2);
+            }
+
+            return (
+                <div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <td>Nome Itinerario</td>
+                            <td>Durata</td>
+                            <td>Prezzo</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {itineraries.map(itinerary => (
+                            <tr key={itinerary.id}>
+                                <td>{itinerary.name}</td>
+                                <td>{itinerary.duration}</td>
+                                <td>{calculatePrice(itinerary)}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                    <Link to="/react/new_itinerary"><button>Aggiungi un itinerario</button></Link>
+                </div>
+            );
+        }
+
+        //ESERCIZIO 8
+        function NewItinerary() {
+            const [ places, setPlaces ] = React.useState([]);
+            React.useEffect(() => {
+                fetch("/api/places")
+                .then(response => response.json())
+                .then(data => setPlaces(data))
+                .catch(error => console.log("Errore nel caricamento degli luoghi: " + error));
+            },[])
+
+            const addItinerary = (event) => {
+                event.preventDefault();
+                const form = event.target;
+                const name = form['name'].value;
+                const duration = form['duration'].value;
+                var place_list = [];
+                console.log(form['place_list']);
+                form['place_list'].forEach((place, index) => {
+                    if (place.checked) {
+                        place_list = [...place_list, (index + 1)];
+                    }
+                });
+                const body = {
+                    name: name,
+                    duration: duration,
+                    place_list: place_list
+                }
+                fetch("/api/add_itineraries", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(body)
+                })
+                .then(response => response.json())
+                .then(result => {
+                    alert(result.message)
+                    if (result.success === 'true') {
+                        window.location.href = "/react/itineraries";
+                    }
+                })
+                .catch(error => console.error("Errore nel salvataggio dell'itinerario: " + error));
+            }
+
+            return(
+                <div>
+                    <form onSubmit={addItinerary}>
+                        <label htmlFor="name">Nome Itinerario: </label>
+                        <input type="text" name="name" /><br/>
+                        <label htmlFor="duration">Durata: </label>
+                        <input type="text" name="duration" /><br/>
+                        <label htmlFor="place_list">Luoghi: </label><br/>
+                        {places.map(place => (
+                            <div key={place.place_id}>
+                                <input type="checkbox" name="place_list" value={place.place_id} /> {place.name} <br/>
+                            </div>
+                        ))}
+                        <button type="submit">Aggiungi</button>
+                    </form>
+                </div>
+            );
+        }
+
+        function App(props){
+            return (
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/react" element={<Navigate to="/react/itineraries" replace/>} />
+                        <Route path="/react/itineraries" element={<ItineraryList />} />
+                        <Route path="/react/new_itinerary" element={<NewItinerary/>}/>
+                        <Route path="*" element={<Navigate to="/react" replace/>} />
+                    </Routes>
+                </BrowserRouter>
+            );
+        }
+
+        const rootEl = document.getElementById("root");
+        const root = createRoot(rootEl);
+        root.render(React.createElement(App));
+    </script>
+
+    </body>
+</html>

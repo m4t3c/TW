@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% block title %}Luoghi{% endblock %}
+{% block content %}
+	<h1>Luoghi visitabili</h1>
+    <h2>Aggiungi un luogo</h2>
+    <button onclick="window.location='/add_place'">Aggiungi luogo!</button>
+    <table>
+    <thead>
+    <tr>
+        <td>Nome</td>
+        <td>Comune</td>
+        <td>Categoria</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for place in places %}
+    <tr onclick="window.location='/place/{{place.place_id}}'" style="cursor: pointer">
+        <td>{{place.name}}</td>
+        <td>{{place.municipality}}</td>
+        <td>{{place.category}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}

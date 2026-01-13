@@ -1,0 +1,14 @@
+place_id,name,category,municipality,image_link,price
+1,Galleria degli Uffizi,Museo,Firenze,https://cdnsecureimage.hotelkeys.it/202133115201382.jpg,25.00
+2,Palazzo Ducale,Palazzo Storico,Venezia,https://www.museivenezia.it/wp-content/uploads/2019/10/palazzo-ducale-venezia.jpg,20.00
+3,Pinacoteca di Brera,Pinacoteca,Milano,https://pinacotecabrera.org/wp-content/uploads/2024/11/palazzo-Brera-cortile-d-onore.jpg,15.00
+4,Museo Egizio,Museo,Torino,https://www.artebella.it/wp-content/uploads/2017/02/GOPR0369-1.jpg,18.00
+5,Galleria Borghese,Galleria,Roma,https://siviaggia.it/wp-content/uploads/sites/2/2019/09/galleria-borghese-roma.jpg?w=687&h=386&quality=90&strip=all&crop=1,16.00
+6,Palazzo Altemps,Museo Archeologico,Roma,https://www.romaguida.com/wp-content/uploads/2022/06/altemps-9.png,12.00
+7,Ca' Rezzonico,Palazzo Museo,Venezia,https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/ce/96/08/ca-rezzonico.jpg?w=1400&h=800&s=1,14.00
+8,Palazzo Pitti,Complesso Museale,Firenze,https://www.beculture.it/wp-content/uploads/2024/07/Palazzo-Pitti.jpg,22.00
+9,Pinacoteca Ambrosiana,Biblioteca Pinacoteca,Milano,https://cdn.zero.eu/uploads/2017/05/Biblioteca-Ambrosiana-museo-Milano-02-Inexhibit-870x579.jpg,10.00
+10,Palazzo Massimo,Museo Archeologico,Roma,https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Palais_Massimo_Thermes_-_Rome_%28IT62%29_-_2021-08-25_-_1.jpg/2560px-Palais_Massimo_Thermes_-_Rome_%28IT62%29_-_2021-08-25_-_1.jpg,13.00
+11,Palazzo Grassi,Centro d'Arte,Venezia,https://upload.wikimedia.org/wikipedia/commons/b/b6/Palais_Grassi.jpg,17.00
+12,Palazzo Medici Riccardi,Palazzo Storico,Firenze,https://www.palazzomediciriccardi.it/wp-content/uploads/2023/04/Facciata-Palazzo-Medici-Riccardi-1920-1080-1024x576.jpg,8.00
+13,Ghirlandina,Tour,Modena,https://www.tourer.it/php/getImage.php?id=1766&w=800,3

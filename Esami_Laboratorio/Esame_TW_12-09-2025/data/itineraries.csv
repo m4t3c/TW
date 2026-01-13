@@ -1,0 +1,10 @@
+itinerary_id,name,duration,place_list
+1,Tour Classico di Firenze,1 giornata,"[1,8,12]"
+2,Tesori di Roma Antica,mezza giornata,"[6,10]"
+3,Venezia Imperiale,1 giornata,"[2,7,11]"
+4,Milano Arte e Cultura,3 ore,"[3,9]"
+5,Grand Tour Romano,2 giorni,"[5,6,10]"
+6,Firenze Rinascimentale,6 ore,"[1,8]"
+7,Venezia Segreta,4 ore,"[7,11]"
+8,Musei di Torino,2 ore,"[4]"
+9,Prova,1 giorno,"[1, 5]"

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}{{ place.name }}{% endblock %}
+{% block content %}
+<div>
+    <h1>{{ place.name }}</h1>
+    <img src="{{ place.image_link }}" alt="{{ place.name }}">
+    <ul>
+        <li><strong>Comune: </strong>{{ place.municipality }}</li>
+        <li><strong>Categoria: </strong>{{ place.category }}</li>
+        <li><strong>Prezzo: </strong>{{ place.price }}</li>
+        <li><strong>Numero itinerari: </strong>{{ count_itineraries }}</li>
+    </ul>
+    <a href="/index">Torna alla lista di posti</a>
+</div>
+{% endblock %}
