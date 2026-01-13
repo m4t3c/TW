@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Elenco Libri</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    {% if books %}
+    <div>
+        <h1>Elenco libri</h1>
+        <table>
+            <thead>
+            <tr>
+                <td>Codice</td>
+                <td>Titolo</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+            <!-- ESERCIZIO 3 -->
+            <tr onclick="window.location.href='/libro/{{ book.code }}'" style="cursor: pointer">
+                <td>{{ book.code }}</td>
+                <td>{{ book.title }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <h1>Nessun libro trovato</h1>
+    {% endif %}
+</body>
+</html>
