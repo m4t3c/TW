@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ec5fa88d-2c8c-4058-aa9e-77a24f3d3072" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Esame_TW_10-06-2025/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Esame_TW_10-06-2025/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Esame_TW_12-02-2025/data/comments.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../../Esame_TW_12-02-2025/data/comments.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Esame_TW_12-02-2025/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Esame_TW_12-02-2025/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Esame_TW_12-02-2025/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Esame_TW_12-02-2025/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Esame_TW_12-09-2025/.idea/Esame_TW_12-09-2025.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Esame_TW_12-09-2025/.idea/Esame_TW_12-09-2025.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Esame_TW_12-09-2025/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Esame_TW_12-09-2025/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Esame_TW_12-09-2025/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Esame_TW_12-09-2025/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Esame_TW_15-07-2025/data/quizzies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../../Esame_TW_15-07-2025/data/quizzies.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Esame_TW_15-07-2025/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Esame_TW_15-07-2025/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Esame_TW_23-01-2025.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/products.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index_react.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/product_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Esame_TW_9-01-2025/data/events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../../Esame_TW_9-01-2025/data/events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Esame_TW_9-01-2025/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Esame_TW_9-01-2025/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Simulazione_esame_TW_10-06-2025/.idea/Simulazione_esame_TW_10-06-2025.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Simulazione_esame_TW_10-06-2025/.idea/Simulazione_esame_TW_10-06-2025.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Simulazione_esame_TW_10-06-2025/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Simulazione_esame_TW_10-06-2025/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Simulazione_esame_TW_10-06-2025/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Simulazione_esame_TW_10-06-2025/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Simulazione_esame_TW_10-06-2025/data/library.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../../Simulazione_esame_TW_10-06-2025/data/library.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Simulazione_esame_TW_10-06-2025/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../Simulazione_esame_TW_10-06-2025/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Simulazione_esame_TW_10-06-2025/templates/book_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Simulazione_esame_TW_10-06-2025/templates/book_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Simulazione_esame_TW_10-06-2025/templates/index_react.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Simulazione_esame_TW_10-06-2025/templates/index_react.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="15" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="37vqLNsLvOQl5XlfhSJn3NCbNs7" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.Esame_TW_23-01-2025.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Matteo/Desktop/UNIVERSITÀ/Progetti/TW/Esami_Laboratorio/Esame_TW_23-01-2025/Esame_TW_23-01-2025&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.inline.completion&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="Esame_TW_23-01-2025" type="PythonConfigurationType" factoryName="Python">
+      <module name="Esame_TW_23-01-2025" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.29346.142" />
+        <option value="bundled-python-sdk-f2b7a9f6281b-6e1f45a539f7-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.29346.142" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ec5fa88d-2c8c-4058-aa9e-77a24f3d3072" name="Changes" comment="" />
+      <created>1767793835374</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1767793835374</updated>
+      <workItem from="1767793836449" duration="1212000" />
+      <workItem from="1767795080972" duration="288000" />
+      <workItem from="1767795423234" duration="21000" />
+      <workItem from="1767795451760" duration="16206000" />
+      <workItem from="1767825292572" duration="3509000" />
+      <workItem from="1767864448207" duration="4767000" />
+      <workItem from="1767872808294" duration="30000" />
+      <workItem from="1767909890394" duration="6779000" />
+      <workItem from="1767953827433" duration="2667000" />
+      <workItem from="1767959004036" duration="3631000" />
+      <workItem from="1767983680833" duration="27000" />
+      <workItem from="1767999589342" duration="593000" />
+      <workItem from="1768039193314" duration="574000" />
+      <workItem from="1768040144135" duration="1718000" />
+      <workItem from="1768051804079" duration="8000" />
+      <workItem from="1768051871700" duration="7000" />
+      <workItem from="1768051928597" duration="16000" />
+      <workItem from="1768063397156" duration="1329000" />
+      <workItem from="1768152306224" duration="1313000" />
+      <workItem from="1768160182016" duration="7000" />
+      <workItem from="1768217916979" duration="22000" />
+      <workItem from="1768237959429" duration="2179000" />
+      <workItem from="1768336799269" duration="65000" />
+      <workItem from="1768339969162" duration="76000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Esame_TW_23_01_2025$Esame_TW_23_01_2025.coverage" NAME="Esame_TW_23-01-2025 Coverage Results" MODIFIED="1768336805275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+  </component>
+</project>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ book.title }}</title>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
     <script>
@@ -29,7 +30,7 @@
                 .then(result => {
                     alert(result.message);
                     if (result.success) {
-                        window.location.reload();
+                        window.location.href = "/";
                     }
                 })
         }
@@ -53,6 +54,5 @@
             <button type="submit">Invia!</button>
         </form>
     </div>
-    <a href="/">Torna alla lista dei libri</a>
 </body>
 </html>

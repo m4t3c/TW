@@ -63,9 +63,8 @@ def reviews():
     reviews = load_reviews()
     codes = [int(r['code'][1:]) for r in reviews]
     if len(codes) > 0:
-        code_with_zeros = str(max(codes) + 1)
-        code_with_zeros.zfill(3)
-        print(code_with_zeros)
+        code_num = str(max(codes) + 1)
+        code_with_zeros = code_num.zfill(3)
         review_code = f'R{code_with_zeros}'
     else:
         review_code = 'R001'
