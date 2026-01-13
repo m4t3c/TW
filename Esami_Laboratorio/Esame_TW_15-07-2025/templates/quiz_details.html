@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    {% if quiz %}
+        Quiz: {{ quiz.name }}
+    {% else %}
+        404 Quiz Not Found
+    {% endif %}
+{% endblock %}
+{% block content %}
+    {% if quiz %}
+        <h1>{{ quiz.name }}</h1>
+        <h2>Domande:</h2>
+        {% for question in questions %}
+            <h4>{{ question.statement }}</h4>
+            <ol type="a">
+                <li>{% if 1 in question.correct_answers %}<strong>{{ question.answer_1 }}</strong>{% else %}{{ question.answer_1 }}{% endif %}</li>
+                <li>{% if 2 in question.correct_answers %}<strong>{{ question.answer_2 }}</strong>{% else %}{{ question.answer_2 }}{% endif %}</li>
+                <li>{% if 3 in question.correct_answers %}<strong>{{ question.answer_3 }}</strong>{% else %}{{ question.answer_3 }}{% endif %}</li>
+                <li>{% if 4 in question.correct_answers %}<strong>{{ question.answer_4 }}</strong>{% else %}{{ question.answer_4 }}{% endif %}</li>
+            </ol>
+        {% endfor %}
+    {% else %}
+        <h2>404 Quiz not found</h2>
+    {% endif %}
+{% endblock %}

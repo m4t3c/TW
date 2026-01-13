@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Quiz{% endblock %}
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <script>
+          alert("{{ messages[0] }}");
+        </script>
+      {% endif %}
+    {% endwith %}
+    <h3>Inserisci un Quiz</h3>
+    <form action="/add_quiz" method="post">
+        <label for="name">Nome Quiz:</label>
+        <input type="text" name="name" id="name"><br>
+        <label for="num_questions">Numero di domande</label>
+        <input type="number" name="num_questions" id="num_questions" min="0"><br>
+        <button type="submit">Aggiungi!</button>
+    </form>
+    <h3>Elenco Quiz</h3>
+    {% if quizzies %}
+	<table>
+    <thead>
+    <tr>
+        <td>Codice</td>
+        <td>Nome</td>
+        <td>Numero Domande</td>
+    </tr>
+    </thead>
+        <tbody>
+        {% for quiz in quizzies %}
+            <tr onclick="window.location='/quiz/{{ quiz.quiz_code }}'" style="cursor: pointer">
+                <td>{{ quiz.quiz_code }}</td>
+                <td>{{ quiz.name }}</td>
+                <td>
+                    {% set question_list = quiz.question_list | replace('[', '') | replace("'", '') | replace(']', '') %}
+                    {% if question_list %}
+                        {{ question_list.split(',') | length }}
+                    {% else %}
+                        0
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Nessun quiz disponibile</p>
+    {% endif %}
+{% endblock %}

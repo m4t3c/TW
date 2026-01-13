@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flask React SPA</title>
+
+  <!-- Import map per risolvere i moduli -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@19?dev",
+        "react-dom/client": "https://esm.sh/react-dom@19/client?dev",
+        "react-router-dom": "https://esm.sh/react-router-dom@7?dev",
+        "react-router": "https://esm.sh/react-router@7?dev"
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" data-type="module">
+    import React from "react";
+    import { createRoot } from "react-dom/client";
+    import {
+      BrowserRouter,
+      Routes,
+      Route,
+      Link,
+      useParams,
+      Navigate
+    } from "react-router-dom";
+
+    //ESERCIZIO 7
+    function QuestionList() {
+        const [questions, setQuestions] = React.useState([])
+
+        function fetchQuestions() {
+            fetch('/api/questions')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error();
+                    }
+                    return response.json()
+                })
+                .then(result => {
+                    setQuestions(result)
+                })
+                .catch(e => {
+                    console.error("Errore nel recupero delle domande: " + e);
+                })
+        }
+
+        React.useEffect(() => {fetchQuestions();}, []);
+
+        return (
+            <div>
+                <table>
+                    <thead>
+                    <tr>
+                        <td><strong>Codice domanda</strong></td>
+                        <td><strong>Domanda</strong></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {questions.map((question, key) => {return(
+                        <tr key={key}>
+                            <td>{question.question_code}</td>
+                            <td>{question.statement}</td>
+                        </tr>
+                    );
+                    })}
+                    </tbody>
+                </table>
+                <Link to="/react/new_questions"><button>Aggiungi una domanda</button></Link>
+            </div>
+        )
+    }
+
+    function NewQuestion() {
+
+
+        const addQuestion = (e) => {
+            e.preventDefault()
+            const form = e.target;
+            const statement = form['statement'].value;
+            const answer_1 = form['answer_1'].value;
+            const answer_2 = form['answer_2'].value;
+            const answer_3 = form['answer_3'].value;
+            const answer_4 = form['answer_4'].value;
+            var correct_answers = [];
+            console.log(form['correct_answers'])
+            form['correct_answers'].forEach((risposta, index) => {
+                if (risposta.checked) {
+                    correct_answers = [...correct_answers, (index + 1)];
+                }
+            });
+            const body = {
+                    statement: statement,
+                    answer_1: answer_1,
+                    answer_2: answer_2,
+                    answer_3: answer_3,
+                    answer_4: answer_4,
+                    correct_answers: correct_answers
+            };
+
+            fetch('/api/add_questions', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(body)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error();
+                    }
+                    return response.json();
+                })
+                .then(result => {
+                    alert(result.message);
+                    if (result.success === 'true') {
+                        form.reset();
+                    }
+                })
+                .catch(e => {
+                    console.error("Errore nel recupero delle domande: " + e);
+                })
+        }
+
+        return (
+            <div>
+                <h2>Inserisci una nuova domanda:</h2>
+                <form onSubmit={addQuestion}>
+                    <label htmlFor="statement">Domanda: </label>
+                    <input type="text" id="statement" name="statement" required/><br/>
+                    <label htmlFor="answer_1">Prima opzione: </label>
+                    <input type="text" id="answer_1" name="answer_1" required/><br/>
+                    <label htmlFor="answer_2">Seconda opzione: </label>
+                    <input type="text" id="answer_2" name="answer_2" required/><br/>
+                    <label htmlFor="answer_3">Terza opzione: </label>
+                    <input type="text" id="answer_3" name="answer_3" required/><br/>
+                    <label htmlFor="answer_4">Quarta opzione: </label>
+                    <input type="text" id="answer_4" name="answer_4" required/><br/>
+                    <label htmlFor="correct_answers">Risposta corretta </label><br/>
+                    <input type="checkbox" name="correct_answers" id="correct_answers" value="1"/>1<br/>
+                    <input type="checkbox" name="correct_answers" id="correct_answers" value="2"/>2<br/>
+                    <input type="checkbox" name="correct_answers" id="correct_answers" value="3"/>3<br/>
+                    <input type="checkbox" name="correct_answers" id="correct_answers" value="4"/>4<br/>
+                    <button type="submit">Aggiungi</button>
+                </form>
+            </div>
+        )
+    }
+
+
+    function App(props) {
+        return (
+            <BrowserRouter>
+                <nav>
+                    <Link to="/react">Home</Link>
+                </nav>
+                <Routes>
+                    <Route path="/react" element={<QuestionList/>}/>
+                    <Route path="/react/new_questions" element={<NewQuestion/>}/>
+                    <Route path="*" element={<Navigate to="/react" replace />}/>
+                </Routes>
+            </BrowserRouter>
+        )
+    }
+
+    const rootEl = document.getElementById("root");
+    const root = createRoot(rootEl);
+    root.render(React.createElement(App));
+  </script>
+</body>
+</html>
